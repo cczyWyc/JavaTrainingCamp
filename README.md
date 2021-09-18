@@ -4,4 +4,4 @@
 
 ## week01_JVM
     jvm进阶
-    导航
+    导航：https://github.com/cczyWyc/JavaTrainingCamp/tree/main/week01_jvm
