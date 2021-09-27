@@ -23,6 +23,10 @@ public class HttpClientDemo {
 
     /**
      * use httpclient send get request to httpserver01
+     *
+     * @param uri url
+     * @return response data
+     * @throws IOException exception
      */
     private static String get(String uri) throws IOException {
         //create httpclient object
@@ -34,7 +38,7 @@ public class HttpClientDemo {
             response = httpClient.execute(httpGet);
             if (response != null && response.getStatusLine().getStatusCode() == 200) {
                 HttpEntity entity = response.getEntity();
-                data = EntityUtils.toString(response.getEntity(), Consts.UTF_8);
+                data = EntityUtils.toString(entity, Consts.UTF_8);
             }
             return data;
         } catch (IOException e) {

@@ -20,6 +20,12 @@ public class OkHttp {
         System.out.println(get(url));
     }
 
+    /**
+     * use okhttp send get request to httpserver01
+     *
+     * @param uri url
+     * @return response data
+     */
     private static String get (String uri) {
         OkHttpClient okHttpClient = new OkHttpClient();
         Request request = new Request.Builder().url(uri).build();
