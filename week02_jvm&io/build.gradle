@@ -11,6 +11,7 @@ repositories {
 dependencies {
     implementation 'org.apache.httpcomponents:httpclient:4.5.13'
     implementation 'com.squareup.okhttp3:okhttp:4.9.1'
+    implementation 'io.netty:netty-all:4.1.68.Final'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
 }
