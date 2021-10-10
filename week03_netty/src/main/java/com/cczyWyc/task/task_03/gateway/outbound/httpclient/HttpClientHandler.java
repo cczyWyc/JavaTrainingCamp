@@ -3,6 +3,8 @@ package com.cczyWyc.task.task_03.gateway.outbound.httpclient;
 import com.cczyWyc.task.task_03.gateway.filter.HttpRequestFilter;
 import com.cczyWyc.task.task_03.gateway.filter.HttpResponseFilter;
 import com.cczyWyc.task.task_03.gateway.filter.HttpResponseFilterImpl;
+import com.cczyWyc.task.task_03.gateway.router.HttpClientRouter;
+import com.cczyWyc.task.task_03.gateway.router.HttpClientRouterImpl;
 import io.netty.buffer.Unpooled;
 import io.netty.channel.ChannelFutureListener;
 import io.netty.channel.ChannelHandlerContext;
@@ -24,11 +26,13 @@ import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.RejectedExecutionHandler;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.Collectors;
 
 /**
  * httpclient handler
@@ -37,21 +41,24 @@ import java.util.concurrent.TimeUnit;
  */
 public class HttpClientHandler {
     /** back_up server */
-    private String backupServer;
+    //private String backupServer;
+    private List<String> backupServers;
     /** executorService */
     private ExecutorService executorService;
     /** asynchronous httpclient */
     private CloseableHttpAsyncClient httpClient;
     /** http response filter */
     HttpResponseFilter filter = new HttpResponseFilterImpl();
+    /** http client router */
+    HttpClientRouter router = new HttpClientRouterImpl();
 
     /**
      * init http client
      *
-     * @param backupServer request back-up server url
+     * @param backupServers request back-up server url
      */
-    public HttpClientHandler(String backupServer) {
-        this.backupServer = backupServer;
+    public HttpClientHandler(List<String> backupServers) {
+        this.backupServers = backupServers.stream().map(this::formatUrl).collect(Collectors.toList());
         //max thread number
         int cores = Runtime.getRuntime().availableProcessors();
         long keepAliveTime = 1000;
@@ -73,6 +80,15 @@ public class HttpClientHandler {
                 .build();
         httpClient.start();
 
+    }
+
+    /**
+     * format url
+     * @param backupServer backup server url
+     * @return url
+     */
+    private String formatUrl(String backupServer) {
+        return backupServer.endsWith("/") ? backupServer.substring(0, backupServer.length() - 1) : backupServer;
     }
 
     /**
@@ -110,6 +126,7 @@ public class HttpClientHandler {
     }
 
     public void handle(FullHttpRequest httpRequest, ChannelHandlerContext ctx, HttpRequestFilter filter) {
+        String backupServer = router.route(this.backupServers);
         String url = backupServer + httpRequest.uri();
         filter.filter(httpRequest, ctx);
         /*if (httpRequest.uri().contains("/api")) {

@@ -6,6 +6,8 @@ import io.netty.channel.socket.SocketChannel;
 import io.netty.handler.codec.http.HttpObjectAggregator;
 import io.netty.handler.codec.http.HttpServerCodec;
 
+import java.util.List;
+
 /**
  * netty http initializer
  *
@@ -13,10 +15,11 @@ import io.netty.handler.codec.http.HttpServerCodec;
  */
 public class HttpInitializer extends ChannelInitializer<SocketChannel> {
     /** back-up server */
-    private String backupServer;
+    //private String backupServer;
+    private List<String> backupServers;
 
-    public HttpInitializer(String backupServer) {
-        this.backupServer = backupServer;
+    public HttpInitializer(List<String> backupServers) {
+        this.backupServers = backupServers;
     }
 
     @Override
@@ -24,6 +27,6 @@ public class HttpInitializer extends ChannelInitializer<SocketChannel> {
         ChannelPipeline pipeline = ch.pipeline();
         pipeline.addLast(new HttpServerCodec());
         pipeline.addLast(new HttpObjectAggregator(1024 * 1024));
-        pipeline.addLast(new HttpHandler(backupServer));
+        pipeline.addLast(new HttpHandler(backupServers));
     }
 }

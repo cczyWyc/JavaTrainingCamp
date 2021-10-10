@@ -10,6 +10,8 @@ import io.netty.channel.socket.nio.NioServerSocketChannel;
 import io.netty.handler.logging.LogLevel;
 import io.netty.handler.logging.LoggingHandler;
 
+import java.util.List;
+
 /**
  * netty http server
  *
@@ -20,11 +22,12 @@ public class NettyHttpServer {
     /** gateway server port */
     private int port;
     /** back-up server */
-    private String backupServer;
+    //private String backupServer;
+    private List<String> backupServers;
 
-    public NettyHttpServer(int port, String backupServer) {
+    public NettyHttpServer(int port, List<String> backupServers) {
         this.port = port;
-        this.backupServer = backupServer;
+        this.backupServers = backupServers;
     }
 
     public void run() throws Exception {
@@ -44,7 +47,7 @@ public class NettyHttpServer {
                     .childOption(ChannelOption.ALLOCATOR, PooledByteBufAllocator.DEFAULT);
             bootstrap.group(bossGroup, workerGroup).channel(NioServerSocketChannel.class)
                     .handler(new LoggingHandler(LogLevel.INFO))
-                    .childHandler(new HttpInitializer(backupServer));
+                    .childHandler(new HttpInitializer(backupServers));
             Channel channel = bootstrap.bind(port).sync().channel();
             channel.closeFuture().sync();
         } finally {

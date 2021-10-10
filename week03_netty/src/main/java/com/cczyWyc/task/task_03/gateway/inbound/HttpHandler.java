@@ -8,6 +8,8 @@ import io.netty.channel.ChannelInboundHandlerAdapter;
 import io.netty.handler.codec.http.FullHttpRequest;
 import io.netty.util.ReferenceCountUtil;
 
+import java.util.List;
+
 
 /**
  * netty http handler
@@ -16,15 +18,16 @@ import io.netty.util.ReferenceCountUtil;
  */
 public class HttpHandler extends ChannelInboundHandlerAdapter {
     /** back-up server */
-    private String backupServer;
+    //private String backupServer;
+    private List<String> backupServers;
     /** httpclient handler */
     private HttpClientHandler handler;
     /** http request filter */
     private HttpRequestFilter filter = new HttpRequestFilterImpl();
 
-    public HttpHandler(String proxyServer) {
-        this.backupServer = proxyServer;
-        this.handler = new HttpClientHandler(this.backupServer);
+    public HttpHandler(List<String> proxyServers) {
+        this.backupServers = proxyServers;
+        this.handler = new HttpClientHandler(this.backupServers);
     }
 
     @Override
