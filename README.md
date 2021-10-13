@@ -8,3 +8,6 @@ jvm进阶
 
 ## week01_JVM&IO
 导航：https://github.com/cczyWyc/JavaTrainingCamp/tree/main/week02_jvm%26io
+
+## week03_Netty
+导航：https://github.com/cczyWyc/JavaTrainingCamp/tree/main/week03_netty
