@@ -11,3 +11,6 @@ jvm进阶
 
 ## week03_Netty
 导航：https://github.com/cczyWyc/JavaTrainingCamp/tree/main/week03_netty
+
+## week04_Concurrent
+导航：https://github.com/cczyWyc/JavaTrainingCamp/tree/main/week04_conc
