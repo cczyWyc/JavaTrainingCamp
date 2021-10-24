@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="student_1" class="com.cczyWyc.task.task_02.xml.entity.Student">
+        <property name="id" value="1"/>
+        <property name="name" value="cczyWyc"/>
+    </bean>
+    <bean id="student_2" class="com.cczyWyc.task.task_02.xml.entity.Student">
+        <property name="id" value="2"/>
+        <property name="name" value="nsb"/>
+    </bean>
+
+    <bean id="class_1" class="com.cczyWyc.task.task_02.xml.entity.Klass">
+        <property name="id" value="1"/>
+        <property name="studentList">
+            <list>
+                <ref bean="student_1"/>
+                <ref bean="student_2"/>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="schoolService" class="com.cczyWyc.task.task_02.xml.bean.SchoolService"/>
+
+</beans>
