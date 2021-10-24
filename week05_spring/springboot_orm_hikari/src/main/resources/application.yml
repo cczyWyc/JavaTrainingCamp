@@ -2,9 +2,9 @@ spring:
   datasource:
     type: com.zaxxer.hikari.HikariDataSource
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://121.199.172.21:3306/geektime_demo
-    username: root
-    password: 123456
+    url: jdbc:mysql://0.0.0.0:3306/geektime_demo
+    username: xxxxxx
+    password: xxxxxx
 
     hikari:
       minimum-idle: 5
