@@ -14,3 +14,7 @@
 
 第3小问，要求使用hikari连接池的方式，由于在springboot2.x以后的版本，采用的默认数据库连接池就是Hikari，这里我单起了一个springboot项目，使用了springboot整合orm（jpa），采用了hikari连接池实现，顺带也联系了springboot整合orm的知识</br>
 代码位置：week05_spring/springboot_orm_hikari/src/main/java
+
+- [X] 第八题（必做）：实现自定义starter
+本题stater代码由于我用gradle项目有点小问题，无奈我起了一个maven项目，位置是week05_spring/student_starter，然后使用mvn install将项目打包，得到target文件夹下面的student——starter-1.0.0.jar</br>
+然后这个打好的jar包由于需要放在springboot项目里面作为一个starter测试，我这里直接复用了hikari连接池题目的springboot项目，在项目里面本地引入了这个jar，然后application.yml文件里面设置student属性，最后编写测试类，测试类位置week05_spring/springboot_orm_hikari/src/test/java/com/cczywyc/springboot_orm_hikari/task_08/test/StudentStarterTest.java，运行后成功输出hello cczyWyc，符合预期，所有的配置均生效。

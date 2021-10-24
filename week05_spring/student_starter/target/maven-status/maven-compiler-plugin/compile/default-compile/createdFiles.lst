@@ -1,0 +1,4 @@
+com\cczyWyc\task\task_08\service\StudentService.class
+com\cczyWyc\task\task_08\entity\Student.class
+com\cczyWyc\task\task_08\config\StudentConfig.class
+META-INF\spring-configuration-metadata.json

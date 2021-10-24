@@ -1,0 +1,17 @@
+{
+  "groups": [
+    {
+      "name": "student.info",
+      "type": "com.cczyWyc.task.task_08.entity.Student",
+      "sourceType": "com.cczyWyc.task.task_08.entity.Student"
+    }
+  ],
+  "properties": [
+    {
+      "name": "student.info.name",
+      "type": "java.lang.String",
+      "sourceType": "com.cczyWyc.task.task_08.entity.Student"
+    }
+  ],
+  "hints": []
+}

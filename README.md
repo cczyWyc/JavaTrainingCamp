@@ -14,3 +14,6 @@ jvm进阶
 
 ## week04_Concurrent
 导航：https://github.com/cczyWyc/JavaTrainingCamp/tree/main/week04_conc
+
+## week05_spring&db
+导航：https://github.com/cczyWyc/JavaTrainingCamp/tree/main/week05_spring
