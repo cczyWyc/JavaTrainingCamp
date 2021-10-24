@@ -13,7 +13,7 @@ import java.sql.Statement;
  */
 public class JDBCUtil {
     /** mysql jdbc driver */
-    private static final String driver = "com.mysql.cj.jdbc.driver";
+    private static final String driver = "com.mysql.cj.jdbc.Driver";
     /** connect url */
     private static final String url = "jdbc:mysql://localhost:3306/geektime_demo";
     /** username */
