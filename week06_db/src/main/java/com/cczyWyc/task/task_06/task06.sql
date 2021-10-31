@@ -42,5 +42,5 @@ CREATE TABLE IF NOT EXISTS `tbl_goods` (
     `goods_status` int(1) NOT NULL,
     `store_id` int(10) NOT NULL,
     PRIMARY KEY (`id`),
-    foreign key (store_id) references tbl_stores(id),
+    foreign key (store_id) references tbl_stores(id)
 ) ENGINE=InnoDB AUTO_INCREMENT=1;
