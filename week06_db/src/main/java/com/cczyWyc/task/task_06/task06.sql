@@ -2,19 +2,41 @@
 CREATE DATABASE IF NOT EXISTS `geektime_ec`;
 use `geektime_ec`;
 
--- # 用户表[用户id、用户昵称、用户密码、手机号、邮箱、身份证号]
-CREATE TABLE IF NOT EXISTS `tbl_user` (
-    `id` int(10) NOT NULL AUTO_INCREMENT,
-    `username` varchar(16) NOT NULL,
-    `password` varchar(16) NOT NULL,
-    `phoneNumber` varchar(15) NOT NULL,
-    `mail` varchar(30) NOT NULL,
-    `id_card` varchar(16) NOT NULL,
-    PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1;
+CREATE TABLE IF NOT EXISTS `t_user` (
+    `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '自增主键',
+    `union_id` varchar(64) NOT NULL COMMENT '用户唯一id，随机生成',
+    `account` varchar(45) NOT NULL COMMENT '注册的账号',
+    `password` varchar(45) NOT NULL COMMENT '密码',
+    `mobile` varchar(15) NOT NULL COMMENT '手机号',
+    `mail` varchar(64) NOT NULL COMMENT '邮箱',
+    `user_name` varchar(45) NOT NULL COMMENT '用户名（昵称）',
+    `user_phone` varchar(255) COMMENT '头像',
+    `gender` tinyint(4) NOT NULL DEFAULT 2 COMMENT '性别0男1女2未知',
+    `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
+    PRIMARY KEY (`id`),
+    UNIQUE KEY `user_name` (`user_name`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT '用户表';
 
--- # 订单表[订单id、订单状态、订单商品列表、订单价格、订单生成时间、订单所属用户id]
-CREATE TABLE IF NOT EXISTS `tbl_order` (
+CREATE TABLE IF NOT EXISTS `t_user_address` (
+    `id` int(11) NOT NULL  AUTO_INCREMENT,
+    `user_union_id` int(11) NOT NULL,
+    `name` varchar(45) NOT NULL COMMENT '收货人姓名',
+    `mobile` varchar(15) NOT NULL COMMENT '收货人手机号',
+    `post_code` varchar(20) DEFAULT NULL COMMENT '邮编',
+    `is_defaulr` tinyint(4) DEFAULT 1 COMMENT '0默认地址 1非默认地址',
+    `province_code` varchar(20) NOT NULL DEFAULT NULL COMMENT '省编号',
+    'city_code' varchar(20) NOT NULL DEFAULT NULL COMMENT '市编号',
+    `area_code` varchar(20) NOT NULL DEFAULT NULL COMMENT '区编号',
+    `street_code` varchar(20) NOT NULL DEFAULT NULL COMMENT '街道编号',
+    `address` varchar(255) NOT NULL DEFAULT NULL COMMENT '详细地址',
+    `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+    `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
+    PRIMARY KEY (`id`),
+    FOREIGN KEY (user_union_id) references t_user(union_id)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COMMENT '用户收获地址表';
+
+CREATE TABLE IF NOT EXISTS `t_order` (
     `id` int(10) NOT NULL AUTO_INCREMENT,
     `status` int(1) NOT NULL,
     `goods_list` varchar(10024) NOT NULL,
