@@ -7,3 +7,6 @@
 1. 循环一条条执行：参考OrderDaoImpl类中的insert方法，这种方式没有使用预处理，插入100w使用了2h5min
 2. 使用prepareStatement预处理，等所有的sql预处理完了只执行提交一次，参考OrderDaoImpl类中insetBatch方法，耗时40min
 3. 使用prepareStatement预处理，但是没10000条sql执行提交一次，参考OrderDaoImpl类中的insertBatchMultiple方法，耗时10s
+4. 使用springboot和spring-data-jpa整合，详见本周文件夹下面springboot项目orm_insert_batch，使用分别配置druid和hikari连接池，直接使用原生saveAll接口插入，发现两者耗时差不多，使用druid比hikari要稍好，druid耗时：1h40min
+   1. 使用orm方式批量插入的耗时结果有点出乎我的意料，我感觉应该是我哪里没有使用好，这应该是有优化的手段的
+   2. 具体的优化放在后面的研究吧

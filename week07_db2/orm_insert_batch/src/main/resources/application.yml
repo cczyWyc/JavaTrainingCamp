@@ -1,0 +1,40 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://121.199.172.21:3306/geektime_ec
+    username: root
+    password: Wab628513.
+    type: com.alibaba.druid.pool.DruidDataSource
+
+    druid:
+      initial-size: 5
+      min-idle: 5
+      max-active: 20
+      max-wait: 60000
+      time-between-eviction-runs-millis: 60000
+      min-evictable-idle-time-millis: 30000
+      filters: stat
+      test-while-idle: true
+      test-on-borrow: false
+      test-on-return: false
+      pool-prepared-statements: true
+      max-open-prepared-statements: 20
+
+  #    type: com.zaxxer.hikari.HikariDataSource
+#
+#    hikari:
+#      minimum-idle: 5
+#      idle-timeout: 180000
+#      maximum-pool-size: 10
+#      auto-commit: true
+#      pool-name: MyHikariCP
+#      max-lifetime: 180000
+#      connection-timeout: 30000
+
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: update
