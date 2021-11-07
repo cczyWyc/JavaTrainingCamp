@@ -1,0 +1,19 @@
+spring:
+  datasource:
+    master:
+      type: com.zaxxer.hikari.HikariDataSource
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://xxx.xxx.xxx.xxx:3316/db
+      username: root
+      password: xxx
+    slave:
+      type: com.zaxxer.hikari.HikariDataSource
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://xxx.xxx.xxx.xxx:3326/db
+      username: root
+      password: xxx
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true

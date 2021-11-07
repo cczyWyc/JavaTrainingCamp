@@ -1,0 +1,17 @@
+package com.cczywyc.task.entity.slave;
+
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+/**
+ * user entity
+ *
+ * @author wangyc
+ */
+@Entity
+@Table(name = "t1")
+public class User {
+    @Id
+    private int id;
+}
