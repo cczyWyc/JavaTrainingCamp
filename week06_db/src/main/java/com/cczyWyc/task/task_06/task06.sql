@@ -46,7 +46,7 @@ CREATE TABLE IF NOT EXISTS `t_order` (
     `amount_real_pay` decimal(10, 2) NOT NULL COMMENT '实付金额',
     `freight_amount` decimal(10, 2) NULL COMMENT '运费',
     `visit_reject_reason` varchar(255) NOT NULL COMMENT '支付平台流水号',
-    `delete` tinyint(4) DEFAULT 0 COMMENT '0未删除，1已删除',
+    `deleted` tinyint(4) DEFAULT 0 COMMENT '0未删除，1已删除',
     `pay_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '支付时间',
     `create_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
     `update_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '更新时间',
