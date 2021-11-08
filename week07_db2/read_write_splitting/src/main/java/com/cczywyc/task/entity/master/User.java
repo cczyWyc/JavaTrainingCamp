@@ -1,6 +1,5 @@
 package com.cczywyc.task.entity.master;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -11,29 +10,8 @@ import javax.persistence.Table;
  * @author wangyc
  */
 @Entity
-@Table(name = "t_student")
+@Table(name = "t1")
 public class User {
-    /** id */
     @Id
     private int id;
-
-    /** student name */
-    @Column(name = "name")
-    private String name;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
 }

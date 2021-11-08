@@ -48,7 +48,9 @@ public class SlaveDataSourceConfig {
     public LocalContainerEntityManagerFactoryBean localContainerEntityManagerFactoryBean(EntityManagerFactoryBuilder builder) {
         return builder.dataSource(dataSource)
                 .properties(getVendorProperties())
-                .packages("com.cczywyc.task.entity.slaver")
+                //设置实体类所在目录
+                .packages("com.study.jpa.model.slaver")
+                //持久化单元名称，当存在多个EntityManagerFactory时，需要制定此名称
                 .persistenceUnit("slavePersistenceUnit")
                 .build();
     }
