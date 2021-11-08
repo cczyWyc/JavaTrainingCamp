@@ -50,9 +50,7 @@ public class MasterDataSourceConfig {
     public LocalContainerEntityManagerFactoryBean entityManagerFactoryBean(EntityManagerFactoryBuilder builder) {
         return builder.dataSource(dataSourceMaster)
                 .properties(getVendorProperties())
-                //设置实体类所在目录
-                .packages("com.study.jpa.model.master")
-                //持久化单元名称，当存在多个EntityManagerFactory时，需要制定此名称
+                .packages("com.cczywyc.task.entity.master")
                 .persistenceUnit("masterPersistenceUnit")
                 .build();
 
