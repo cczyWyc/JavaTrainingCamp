@@ -25,8 +25,8 @@ import java.util.Objects;
 @Configuration
 @EnableTransactionManagement
 @EnableJpaRepositories(
-        entityManagerFactoryRef = "entityManagerFactoryMaster",
-        transactionManagerRef = "transactionManagerMaster",
+        entityManagerFactoryRef = "entityManagerFactorySlave",
+        transactionManagerRef = "transactionManagerSlave",
         basePackages = {"com.cczywyc.task.repository.slave"}
 )
 public class SlaveDataSourceConfig {
@@ -48,7 +48,7 @@ public class SlaveDataSourceConfig {
     public LocalContainerEntityManagerFactoryBean localContainerEntityManagerFactoryBean(EntityManagerFactoryBuilder builder) {
         return builder.dataSource(dataSource)
                 .properties(getVendorProperties())
-                .packages("com.cczywyc.task.entity.slaver")
+                .packages("com.cczywyc.task.entity.slave")
                 .persistenceUnit("slavePersistenceUnit")
                 .build();
     }

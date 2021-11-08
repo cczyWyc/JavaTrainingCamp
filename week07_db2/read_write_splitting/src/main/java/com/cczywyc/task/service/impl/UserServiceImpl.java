@@ -4,7 +4,6 @@ import com.cczywyc.task.entity.master.User;
 import com.cczywyc.task.repository.master.UserRepository;
 import com.cczywyc.task.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,12 +14,10 @@ import java.util.List;
 @Service
 public class UserServiceImpl implements UserService {
     @Autowired
-    @Qualifier("masterUserRepository")
-    UserRepository masterUserRepository;
+    private UserRepository masterUserRepository;
 
     @Autowired
-    @Qualifier("slaveUserRepository")
-    com.cczywyc.task.repository.slave.UserRepository slaveUserRepository;
+    private com.cczywyc.task.repository.slave.UserRepository slaveUserRepository;
 
     @Override
     public void insert(User user) {
