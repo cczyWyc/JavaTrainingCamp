@@ -1,0 +1,18 @@
+spring:
+  datasource:
+    master:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://x.x.x.x:3316/db
+      username: root
+      password: xxx
+    slave:
+      driver-class-name: com.mysql.cj.jdbc.Driver
+      url: jdbc:mysql://x.x.x.x:3326/db
+      username: root
+      password: xxx
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+
