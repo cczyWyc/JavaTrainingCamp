@@ -19,7 +19,6 @@ public class SlaveDataSourceConfig {
     private String password;
 
     /** mysql driver */
-    @Value("${driver-class-name}")
     private String driver;
 
     /** jdbc url */
