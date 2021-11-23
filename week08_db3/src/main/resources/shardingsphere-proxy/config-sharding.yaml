@@ -61,7 +61,7 @@ rules:
 #      keyGenerateStrategy:
 #        column: order_item_id
 #        keyGeneratorName: snowflake
-  bindingTables:
+#  bindingTables:
 #    - t_order,t_order_item
   defaultDatabaseStrategy:
     standard:
@@ -78,7 +78,7 @@ rules:
     t_order_inline:
       type: INLINE
       props:
-        algorithm-expression: t_order_${order_id % 2}
+        algorithm-expression: t_order_${order_id % 16}
 #    t_order_item_inline:
 #      type: INLINE
 #      props:
