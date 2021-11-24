@@ -1,1 +1,3 @@
 rootProject.name = 'week08_db3'
+include 'shardingsphere-xa-transaction'
+

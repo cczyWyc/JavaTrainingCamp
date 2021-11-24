@@ -1,0 +1,23 @@
+plugins {
+    id 'java'
+}
+
+group 'com.cczyWyc'
+version '0.0.1-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'mysql:mysql-connector-java:5.1.49'
+    implementation 'org.apache.shardingsphere:shardingsphere-jdbc-core:5.0.0'
+    implementation 'org.apache.shardingsphere:shardingsphere-transaction-xa-core:5.0.0'
+    implementation 'com.zaxxer:HikariCP:5.0.0'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+}
+
+test {
+    useJUnitPlatform()
+}
