@@ -1,0 +1,29 @@
+plugins {
+    id 'java'
+}
+
+group 'com.cczyWyc'
+version 'unspecified'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'com.alibaba:fastjson:1.2.78'
+    implementation 'io.netty:netty-all:4.1.45.Final'
+    implementation 'cglib:cglib:3.3.0'
+    implementation 'com.google.guava:guava:31.0.1-jre'
+    implementation 'net.bytebuddy:byte-buddy:1.12.2'
+    implementation 'org.springframework:spring-aop:5.3.12'
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+}
+
+test {
+    useJUnitPlatform()
+}
+
+task prepareKotlinBuildScriptModel {
+
+}
