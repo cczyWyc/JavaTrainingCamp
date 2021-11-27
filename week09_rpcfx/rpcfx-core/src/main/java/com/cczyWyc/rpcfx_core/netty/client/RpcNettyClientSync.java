@@ -11,7 +11,6 @@ import io.netty.channel.ChannelOption;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioSocketChannel;
-import lombok.extern.slf4j.Slf4j;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -24,8 +23,6 @@ import java.util.concurrent.CountDownLatch;
  *
  * @author wangyc
  */
-
-@Slf4j
 public class RpcNettyClientSync {
 
     /** Singleton mode. */
@@ -71,7 +68,7 @@ public class RpcNettyClientSync {
         if (channelPool.containsKey(cacheKey)) {
             Channel channel = channelPool.get(cacheKey);
             if (!channel.isActive() || !channel.isWritable() || !channel.isOpen()) {
-                log.info("Channel can't reuse");
+                System.out.println("Channel can't reuse");
             } else {
                 try {
                     RpcClientSyncHandler handler = new RpcClientSyncHandler();
@@ -80,11 +77,11 @@ public class RpcNettyClientSync {
                     channel.writeAndFlush(request).sync();
                     return handler.getResponse();
                 } catch (InterruptedException e) {
-                    log.error("channel reuse send msg failed!");
+                    System.out.println("channel reuse send msg failed!");
                     channel.close();
                     channelPool.remove(cacheKey);
                 }
-                log.info("hander is busy, please use new channel");
+                System.out.println("handler is busy, please use new channel");
             }
         }
 

@@ -9,14 +9,12 @@ import io.netty.channel.ChannelPipeline;
 import io.netty.channel.EventLoopGroup;
 import io.netty.channel.nio.NioEventLoopGroup;
 import io.netty.channel.socket.nio.NioServerSocketChannel;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
 /**
  * @author wangyc
  */
-@Slf4j
 @Component
 public class RpcNettyServer {
     /** spring application */
@@ -50,7 +48,7 @@ public class RpcNettyServer {
                 });
         int port = 8080;
         Channel channel = serverBootstrap.bind(port).sync().channel();
-        log.info("Rpc netty server is start, listing port is:" + port);
+        System.out.println("Rpc netty server is start, listing port is:" + port);
         channel.closeFuture().sync();
     }
 

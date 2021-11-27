@@ -1,12 +1,10 @@
 package com.cczyWyc.rpcfx_core.proxy;
 
-import lombok.extern.slf4j.Slf4j;
 import net.sf.cglib.proxy.Enhancer;
 
 /**
  * @author wangyc
  */
-@Slf4j
 public class RpcClientCglib extends RpcProxy implements RpcClient {
     @Override
     public <T> T creat(Class<T> serviceClass, String url) {
@@ -29,7 +27,7 @@ public class RpcClientCglib extends RpcProxy implements RpcClient {
         Enhancer enhancer = new Enhancer();
         enhancer.setCallback(new RpcInvocationHandler(serviceName, url));
         enhancer.setSuperclass(serviceName);
-        log.info("client cglib proxy instance create and return");
+        System.out.println("client cglib proxy instance create and return");
         return (T) enhancer.create();
     }
 }

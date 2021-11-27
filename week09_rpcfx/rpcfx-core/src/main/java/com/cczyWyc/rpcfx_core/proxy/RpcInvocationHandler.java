@@ -5,7 +5,6 @@ import com.alibaba.fastjson.parser.ParserConfig;
 import com.cczyWyc.rpcfx_core.api.RpcRequest;
 import com.cczyWyc.rpcfx_core.api.RpcResponse;
 import com.cczyWyc.rpcfx_core.netty.client.RpcNettyClientSync;
-import lombok.extern.slf4j.Slf4j;
 import net.sf.cglib.proxy.MethodInterceptor;
 import net.sf.cglib.proxy.MethodProxy;
 
@@ -18,8 +17,6 @@ import java.net.URISyntaxException;
  *
  * @author wangyc
  */
-
-@Slf4j
 public class RpcInvocationHandler implements InvocationHandler, MethodInterceptor {
 
     /** request service class */
@@ -53,7 +50,7 @@ public class RpcInvocationHandler implements InvocationHandler, MethodIntercepto
      * @return result object
      */
     private Object process(Class<?> service, Method method, Object[] params, String url) {
-        log.info("Client proxy instance method invoke");
+        System.out.println("Client proxy instance method invoke");
 
         //build rpc request
         RpcRequest rpcRequest = new RpcRequest();
@@ -66,19 +63,19 @@ public class RpcInvocationHandler implements InvocationHandler, MethodIntercepto
         try {
             rpcResponse = RpcNettyClientSync.getInstance().getResponse(rpcRequest, url);
         } catch (URISyntaxException | InterruptedException e) {
-            log.warn(e.getMessage());
+            System.out.println(e.getMessage());
             return null;
         }
-        log.info("client receive response object");
+        System.out.println("client receive response object");
         assert rpcResponse != null;
         if (!rpcResponse.getStatus()) {
-            log.info("client receive failed!");
-            log.error(rpcResponse.getException().getMessage());
+            System.out.println("client receive failed!");
+            System.out.println(rpcResponse.getException().getMessage());
             return null;
         }
 
         //serialization response to object and return
-        log.info("Response:" + rpcResponse.getResult());
+        System.out.println("Response:" + rpcResponse.getResult());
         return JSON.parse(rpcResponse.getResult().toString());
     }
 }

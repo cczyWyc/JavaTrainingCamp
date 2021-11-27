@@ -1,11 +1,8 @@
 package com.cczyWyc.rpcfx_api.model;
 
-import lombok.extern.slf4j.Slf4j;
-
 /**
  * @author wangyc
  */
-@Slf4j
 public class User {
     /** user id */
     private Integer id;

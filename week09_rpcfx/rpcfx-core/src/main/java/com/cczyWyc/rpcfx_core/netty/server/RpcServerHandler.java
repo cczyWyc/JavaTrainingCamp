@@ -8,7 +8,6 @@ import com.cczyWyc.rpcfx_core.netty.common.RpcProtocol;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.util.CharsetUtil;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.ApplicationContext;
 
 import java.lang.reflect.InvocationTargetException;
@@ -21,7 +20,6 @@ import java.util.Arrays;
  *
  * @author wangyc
  */
-@Slf4j
 public class RpcServerHandler extends SimpleChannelInboundHandler<RpcProtocol> {
     /** spring Application */
     private ApplicationContext applicationContext;
@@ -32,13 +30,13 @@ public class RpcServerHandler extends SimpleChannelInboundHandler<RpcProtocol> {
 
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, RpcProtocol msg) throws Exception {
-        log.info("Rpc netty server receive message");
-        log.info("message length:" + msg.getLength());
-        log.info("message content:" + new String(msg.getContent(), CharsetUtil.UTF_8));
+        System.out.println("Rpc netty server receive message");
+        System.out.println("message length:" + msg.getLength());
+        System.out.println("message content:" + new String(msg.getContent(), CharsetUtil.UTF_8));
 
         //get rpc request from rpcProtocol, deserialize into rpc request object
         RpcRequest rpcRequest = JSON.parseObject(new String(msg.getContent(), CharsetUtil.UTF_8), RpcRequest.class);
-        log.info("Netty server serialize:" + rpcRequest.toString());
+        System.out.println("Netty server serialize:" + rpcRequest.toString());
 
         //get bean, invoke
         RpcResponse rpcResponse = invoke(rpcRequest);
@@ -50,7 +48,7 @@ public class RpcServerHandler extends SimpleChannelInboundHandler<RpcProtocol> {
         message.setContent(rpcResponseJson.getBytes(StandardCharsets.UTF_8));
 
         ctx.writeAndFlush(message);
-        log.info("rpc netty client send message to client finish");
+        System.out.println("rpc netty client send message to client finish");
     }
 
     /**
@@ -67,13 +65,13 @@ public class RpcServerHandler extends SimpleChannelInboundHandler<RpcProtocol> {
         try {
             Method method = resolveMethodFromClass(service.getClass(), rpcRequest.getMethod());
             Object result = method.invoke(service, rpcRequest.getArgs());
-            log.info("Server method invoke result:" + result.toString());
+            System.out.println("Server method invoke result:" + result.toString());
             rpcResponse.setResult(JSON.toJSONString(result, SerializerFeature.WriteClassName));
             rpcResponse.setResult(true);
-            log.info("Server Response serialize to string return");
+            System.out.println("Server Response serialize to string return");
             return rpcResponse;
         } catch (IllegalAccessException | InvocationTargetException e) {
-            log.error(e.getMessage());
+            System.out.println(e.getMessage());
             rpcResponse.setException(e);
             rpcResponse.setStatus(false);
             return rpcResponse;

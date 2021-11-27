@@ -6,7 +6,6 @@ import com.cczyWyc.rpcfx_core.netty.common.RpcProtocol;
 import io.netty.channel.ChannelHandlerContext;
 import io.netty.channel.SimpleChannelInboundHandler;
 import io.netty.util.CharsetUtil;
-import lombok.extern.slf4j.Slf4j;
 
 import java.util.concurrent.CountDownLatch;
 
@@ -15,7 +14,6 @@ import java.util.concurrent.CountDownLatch;
  *
  * @author wangyc
  */
-@Slf4j
 public class RpcClientSyncHandler extends SimpleChannelInboundHandler<RpcProtocol> {
 
     /** concurrent util */
@@ -25,13 +23,13 @@ public class RpcClientSyncHandler extends SimpleChannelInboundHandler<RpcProtoco
 
     @Override
     protected void channelRead0(ChannelHandlerContext ctx, RpcProtocol msg) throws Exception {
-        log.info("Netty rpc client receive message");
-        log.info("Message length:" + msg.getLength());
-        log.info("Message content:" + new String(msg.getContent(), CharsetUtil.UTF_8));
+        System.out.println("Netty rpc client receive message");
+        System.out.println("Message length:" + msg.getLength());
+        System.out.println("Message content:" + new String(msg.getContent(), CharsetUtil.UTF_8));
 
         //rpcResponse str---->rpcResponse object
         RpcResponse rpcResponse = JSON.parseObject(new String(msg.getContent(), CharsetUtil.UTF_8), RpcResponse.class);
-        log.info("Netty rpc client serializer:" + rpcResponse.toString());
+        System.out.println("Netty rpc client serializer:" + rpcResponse.toString());
         //concurrent wait-notice to get result
         response = rpcResponse;
         latch.countDown();
@@ -39,7 +37,7 @@ public class RpcClientSyncHandler extends SimpleChannelInboundHandler<RpcProtoco
 
     @Override
     public void exceptionCaught(ChannelHandlerContext ctx, Throwable cause) throws Exception {
-        log.info("error:" + cause.getMessage());
+        System.out.println("error:" + cause.getMessage());
         ctx.close();
     }
 
