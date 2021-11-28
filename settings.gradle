@@ -13,4 +13,5 @@ include 'week09_rpcfx:rpcfx-api'
 findProject(':week09_rpcfx:rpcfx-api')?.name = 'rpcfx-api'
 include 'week09_rpcfx:rpcfx-client'
 findProject(':week09_rpcfx:rpcfx-client')?.name = 'rpcfx-client'
+include 'week10_rpcfx2'
 
