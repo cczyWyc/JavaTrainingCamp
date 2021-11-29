@@ -1,5 +1,12 @@
 package com.cczyWyc.rpcfx_client;
 
+import com.cczyWyc.rpcfx_api.model.Order;
+import com.cczyWyc.rpcfx_api.model.User;
+import com.cczyWyc.rpcfx_api.service.OrderService;
+import com.cczyWyc.rpcfx_api.service.UserService;
+import com.cczyWyc.rpcfx_core.proxy.RpcByteBuddy;
+import com.cczyWyc.rpcfx_core.proxy.RpcClientJdk;
+
 /**
  * client app
  *
@@ -7,20 +14,23 @@ package com.cczyWyc.rpcfx_client;
  */
 public class ClientApplication {
     public static void main(String[] args) {
-        RpcClient jdk = new RpcClientJdk();
-        UserService userService = jdk.create(UserService.class, "http://localhost:8080/");
+        //jdk
+        RpcClientJdk rpcClientJdk = new RpcClientJdk();
+        UserService userService = rpcClientJdk.creat(UserService.class, "http://localhost:8080/");
         User user = userService.findById(1);
         if (user == null) {
-            System.out.println("Clint service invoke Error");
+            System.out.println("Client service invoke Error");
             return;
         }
-        System.out.println("find user id=1 from server: " + user.getName());
+        System.out.println("find user id=1 server:" + user.getName());
 
-        RpcClient buddy = new RpcByteBuddy();
-        OrderService orderService = buddy.create(OrderService.class, "http://localhost:8080/");
-        Order order = orderService.findById(1992129);
+
+        //byte buddy
+        RpcByteBuddy byteBuddy = new RpcByteBuddy();
+        OrderService orderService = byteBuddy.creat(OrderService.class, "http://localhost:8080/");
+        Order order = orderService.findById(1221);
         if (order == null) {
-            log.info("Clint service invoke Error");
+            System.out.println("Client service invoke error");
             return;
         }
         System.out.println(String.format("find order name=%s, user=%d",order.getName(),order.getUserId()));

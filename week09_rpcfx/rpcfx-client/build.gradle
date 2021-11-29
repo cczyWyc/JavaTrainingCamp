@@ -10,6 +10,8 @@ repositories {
 }
 
 dependencies {
+    implementation files('lib/JavaTrainingCamp.week09_rpcfx.rpcfx-api.main.jar')
+    implementation files('lib/JavaTrainingCamp.week09_rpcfx.rpcfx-core.main.jar')
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
 }
