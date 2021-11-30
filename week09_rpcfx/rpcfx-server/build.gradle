@@ -1,9 +1,12 @@
 plugins {
+    id 'org.springframework.boot' version '2.5.6'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
     id 'java'
 }
 
-group 'com.cczyWyc'
-version '1.0-SNAPSHOT'
+group = 'com.cczyWyc'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '1.8'
 
 repositories {
     mavenCentral()
@@ -12,8 +15,8 @@ repositories {
 dependencies {
     implementation files('lib/JavaTrainingCamp.week09_rpcfx.rpcfx-api.main.jar')
     implementation files('lib/JavaTrainingCamp.week09_rpcfx.rpcfx-core.main.jar')
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+    implementation 'org.springframework.boot:spring-boot-starter'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
 test {

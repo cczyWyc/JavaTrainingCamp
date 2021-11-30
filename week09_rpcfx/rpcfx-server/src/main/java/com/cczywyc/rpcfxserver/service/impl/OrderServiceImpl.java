@@ -1,11 +1,11 @@
-package com.cczyWyc.rpcfx_server.service;
+package com.cczywyc.rpcfxserver.service.impl;
 
 import com.cczyWyc.rpcfx_api.model.Order;
 import com.cczyWyc.rpcfx_api.service.OrderService;
 import com.cczyWyc.rpcfx_core.exception.CustomException;
 
 /**
- * order implement
+ * order service implement
  *
  * @author wangyc
  */
@@ -17,6 +17,6 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public Order findError() {
-        throw new CustomException("Custom exception");
+        throw new CustomException("Custom Exception");
     }
 }
