@@ -8,3 +8,13 @@
 2. 将客户端动态代理改成AOP，添加异常处理
 3. 使用Netty+HTTP作为client端传输方式
 4. 使用字节码方式代填服务端反射
+> 代码地址：https://github.com/cczyWyc/JavaTrainingCamp/tree/main/week09_rpcfx
+
+
+### 自定义的rpc框架，第二版中，修改了服务注册的方式，修改为zk注册中心的方式
+1. 基于zookeeper的注册中心，消费者和生产者可以根据注册中心查找可用服务进行调用(直接选择列表里的最后一个);
+2. 当有生产者启动或者下线时，通过zookeeper通知并更新各个消费者，使得各个消费者可以调用新生产者或者不调用下线生产者;
+3. 实现基于tag的简单路由;
+4. 实现基于Weight/ConsistentHash的负载均衡;
+5. 实现基于IP黑名单的简单流控
+> 代码地址：
