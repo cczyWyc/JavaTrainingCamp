@@ -16,6 +16,9 @@ dependencies {
     implementation 'cglib:cglib:3.3.0'
     implementation 'io.netty:netty-all:4.1.45.Final'
     implementation 'net.bytebuddy:byte-buddy:1.12.2'
+    implementation 'org.apache.curator:curator-framework:5.2.0'
+    implementation 'org.apache.curator:curator-client:5.2.0'
+    implementation 'org.apache.curator:curator-x-discovery:5.2.0'
     testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
     testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
 }
