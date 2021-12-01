@@ -28,8 +28,7 @@ public class ProviderServiceManagement {
      * value:class */
     private static Map<String, Object> proxyMap = new HashMap<>();
 
-    public static void init(String packageName, int port) throws IOException, ClassNotFoundException,
-            InstantiationException, IllegalAccessException {
+    public static void init(String packageName, int port) throws Exception {
         System.out.println("-----Load rpc provider class start-----");
 
         DiscoveryServer serviceRegister = new DiscoveryServer();
@@ -45,7 +44,12 @@ public class ProviderServiceManagement {
             String provider = Joiner.on(":").join(annotation.service(), group, version);
             int weight = annotation.weight();
             proxyMap.put(provider, c.newInstance());
+
+            serviceRegister.registerService(annotation.service(), group, version, port, tags, weight);
+            System.out.println("Load provider class:" + annotation.service() + ":" + group + ":" + version + " :: "
+                    + c.getName());
         }
+        System.out.println("-----Load rpc provider class end-----");
     }
 
     /**
