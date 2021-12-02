@@ -13,7 +13,7 @@ import java.util.Random;
 public class WeightBalance extends AbstractLoadBalance {
 
     /** load balance */
-    private static final String NAME = "weight_balance";
+    public static final String NAME = "weight_balance";
 
     @Override
     public String select(List<ProviderInfo> providerInfos, String serviceName, String methodName) {
