@@ -21,4 +21,5 @@ findProject(':week10_rpcfx2:rpcfx-core')?.name = 'rpcfx-core'
 include 'week10_rpcfx2:rpcfx-api'
 findProject(':week10_rpcfx2:rpcfx-api')?.name = 'rpcfx-api'
 include 'week11_cache'
+include 'week12_cacheMQ'
 
