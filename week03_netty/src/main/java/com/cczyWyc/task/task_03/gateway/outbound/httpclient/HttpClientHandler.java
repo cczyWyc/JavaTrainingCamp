@@ -64,8 +64,8 @@ public class HttpClientHandler {
         long keepAliveTime = 1000;
         int queueSize = 2048;
         //Rejection strategy
-        RejectedExecutionHandler handler =  new ThreadPoolExecutor.CallerRunsPolicy();
-        executorService =new ThreadPoolExecutor(cores, cores, keepAliveTime, TimeUnit.MILLISECONDS,
+        RejectedExecutionHandler handler = new ThreadPoolExecutor.CallerRunsPolicy();
+        executorService = new ThreadPoolExecutor(cores, cores, keepAliveTime, TimeUnit.MILLISECONDS,
                 new ArrayBlockingQueue<>(queueSize), new HttpClientThreadFactory("httpExecutorService"), handler);
         IOReactorConfig ioConfig = IOReactorConfig.custom()
                 .setConnectTimeout(1000)
